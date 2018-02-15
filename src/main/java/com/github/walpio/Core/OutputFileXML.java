@@ -20,8 +20,13 @@ public class OutputFileXML {
         Document doc = new Document();
         Element theRoot = new Element("text");
         doc.setRootElement(theRoot);
+        Element sentence = new Element("sentence");
+        theRoot.addContent(sentence);
+        Element word = new Element("word");
+        sentence.addContent(word);
+        word.addContent("word");
         XMLOutputter xmlOutput = new XMLOutputter(Format.getPrettyFormat());
         xmlOutput.output(doc, new FileOutputStream(new File(".\\Sample\\OutputXML.xml")));
-        System.out.println("XML created");
+        System.out.println("XML has been created");
     }
 }
