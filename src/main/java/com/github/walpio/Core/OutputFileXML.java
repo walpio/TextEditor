@@ -20,11 +20,15 @@ public class OutputFileXML {
         Document doc = new Document();
         Element theRoot = new Element("text");
         doc.setRootElement(theRoot);
-        Element sentence = new Element("sentence");
-        theRoot.addContent(sentence);
-        Element word = new Element("word");
-        sentence.addContent(word);
-        word.addContent("word");
+        for (int i = 0; i < inputFile.splitSentencesIntoListOfWords().size(); i++) {
+            Element sentence = new Element("sentence");
+            theRoot.addContent(sentence);
+            for (int j = 0; j < inputFile.splitSentencesIntoListOfWords().get(i).size(); j++) {
+                Element word = new Element("word");
+                sentence.addContent(word);
+                word.addContent(inputFile.splitSentencesIntoListOfWords().get(i).get(j));
+            }
+        }
         XMLOutputter xmlOutput = new XMLOutputter(Format.getPrettyFormat());
         xmlOutput.output(doc, new FileOutputStream(new File(".\\Sample\\OutputXML.xml")));
         System.out.println("XML has been created");

@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <text>
   <sentence>
-    <word>word</word>
+    <word>Some</word>
+    <word>words.</word>
+  </sentence>
+  <sentence>
+    <word>Random</word>
+    <word>sentences.</word>
+  </sentence>
+  <sentence>
+    <word>For</word>
+    <word>only.</word>
+    <word>purposes</word>
+    <word>testing</word>
+  </sentence>
+  <sentence>
+    <word>Case</word>
+    <word>sensitive</word>
+    <word>Test.</word>
   </sentence>
 </text>
