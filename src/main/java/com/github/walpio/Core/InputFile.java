@@ -64,4 +64,18 @@ public class InputFile {
         }
         return sortedWords;
     }
+
+    public int findLongestSentence() throws IOException {
+        int numberOfWords = 0;
+        int longestSentence = 0;
+        for (Map.Entry<String, List<String>> entry : splitSentencesIntoWords().entrySet()) {
+            List<String> value = entry.getValue();
+            if (value.size() > longestSentence) {
+                longestSentence = value.size();
+                numberOfWords = longestSentence;
+            }
+        }
+        return numberOfWords;
+    }
+
 }
