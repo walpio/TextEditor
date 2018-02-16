@@ -23,14 +23,16 @@ public class OutputFileCSV {
         String header;
         StringBuilder headerBuilder = new StringBuilder();
         for (int i = 1; i < inputFile.findLongestSentence(); i++) {
-            if (i == (inputFile.findLongestSentence() - 1)) {
+            if (i == 1) {
+                headerBuilder.append(",").append(" ").append("Word").append(" ").append(i).append(",").append(" ");
+            } else if (i == (inputFile.findLongestSentence() - 1)) {
                 headerBuilder.append("Word").append(" ").append(i);
             } else {
                 headerBuilder.append("Word").append(" ").append(i).append(",").append(" ");
             }
         }
         header = headerBuilder.toString();
-        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(header));
+        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(header).withQuote(null));
 
         for (Map.Entry<String, List<String>> entry : inputFile.splitSentencesIntoWords().entrySet()) {
             String key = entry.getKey();
@@ -42,7 +44,7 @@ public class OutputFileCSV {
                 if (i == (value.size() - 1)) {
                     sentenceBodyBuilder.append(value.get(i));
                 } else {
-                    sentenceBodyBuilder.append(value.get(i)).append(",").append(" ");
+                    sentenceBodyBuilder.append(" ").append(value.get(i)).append(",").append(" ");
                 }
             }
 
