@@ -22,10 +22,10 @@ public class OutputFileCSV {
 
         String header;
         StringBuilder headerBuilder = new StringBuilder();
-        for (int i = 1; i < inputFile.findLongestSentence(); i++) {
+        for (int i = 1; i < inputFile.getLongestSentence(); i++) {
             if (i == 1) {
                 headerBuilder.append(",").append(" ").append("Word").append(" ").append(i).append(",").append(" ");
-            } else if (i == (inputFile.findLongestSentence() - 1)) {
+            } else if (i == (inputFile.getLongestSentence() - 1)) {
                 headerBuilder.append("Word").append(" ").append(i);
             } else {
                 headerBuilder.append("Word").append(" ").append(i).append(",").append(" ");

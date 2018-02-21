@@ -9,21 +9,35 @@ import java.util.*;
 public class InputFile {
 
     private String filePath = ".\\Sample\\Sample Text.txt";
+    private List<String> sentences = splitFileIntoSentences();
+    private Map<String, List<String>> sortedWords = splitSentencesIntoWords();
+    private List<List<String>> listOfSortedWords = splitSentencesIntoListOfWords();
+    private int longestSentence = findTheLongestSentence();
+    private int counter;
 
-    public String readFile() throws IOException {
+    public InputFile() throws IOException {
+    }
+
+    private String readFile() throws IOException {
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         String inputText = "";
         String line = bufferedReader.readLine();
+        counter = 1;
+        System.out.println("Przeczytano linię: " + counter);
         while (line != null) {
             inputText += line;
             line = bufferedReader.readLine();
+            counter++;
+            System.out.println("Przeczytano linię: " + counter);
         }
+        System.out.println("Przeczytano cały plik");
+        counter = 1;
         return inputText;
     }
 
-    public List<String> splitFileIntoSentences() throws IOException {
+    private List<String> splitFileIntoSentences() throws IOException {
         BreakIterator breakIterator = BreakIterator.getSentenceInstance();
         List<String> sentences = new ArrayList<>();
 
@@ -39,11 +53,11 @@ public class InputFile {
         return sentences;
     }
 
-    public Map<String, List<String>> splitSentencesIntoWords() throws IOException {
+    private Map<String, List<String>> splitSentencesIntoWords() throws IOException {
         Map<String, List<String>> sortedWords = new LinkedHashMap<>();
 
-        for (int i = 0; i < splitFileIntoSentences().size(); i++) {
-            String sentence = splitFileIntoSentences().get(i);
+        for (int i = 0; i < sentences.size(); i++) {
+            String sentence = sentences.get(i);
             String key = String.format("Sentence %d", (i + 1));
             List<String> listOfWords = Arrays.asList(sentence.split("\\s+"));
             Collections.sort(listOfWords, String.CASE_INSENSITIVE_ORDER);
@@ -52,30 +66,44 @@ public class InputFile {
         return sortedWords;
     }
 
-    public List<List<String>> splitSentencesIntoListOfWords() throws IOException {
-        List<List<String>> sortedWords = new ArrayList<>();
+    private List<List<String>> splitSentencesIntoListOfWords() throws IOException {
+        List<List<String>> listOfSortedWords = new ArrayList<>();
 
-        String sentence;
-        for (int i = 0; i < splitFileIntoSentences().size(); i++) {
-            sentence = splitFileIntoSentences().get(i);
+        for (int i = 0; i < sentences.size(); i++) {
+            String sentence = sentences.get(i);
             List<String> listOfWords = Arrays.asList(sentence.split("\\s+"));
             Collections.sort(listOfWords, String.CASE_INSENSITIVE_ORDER);
-            sortedWords.add(listOfWords);
+            listOfSortedWords.add(listOfWords);
         }
+        System.out.println("Metoda splitSentenceIntoListOfWords wywołana: " + counter);
+        counter++;
+        return listOfSortedWords;
+    }
+
+    private int findTheLongestSentence() throws IOException {
+        int longestSentence = 0;
+        int numberOfWords = 0;
+        for (Map.Entry<String, List<String>> entry : splitSentencesIntoWords().entrySet()) {
+            List<String> value = entry.getValue();
+            if (value.size() > numberOfWords) {
+                numberOfWords = value.size();
+                longestSentence = numberOfWords;
+            }
+        }
+        System.out.println("Metoda findTheLongestSentence wywołana: " + counter);
+        counter++;
+        return longestSentence;
+    }
+
+    public Map<String, List<String>> getSortedWords() {
         return sortedWords;
     }
 
-    public int findLongestSentence() throws IOException {
-        int numberOfWords = 0;
-        int longestSentence = 0;
-        for (Map.Entry<String, List<String>> entry : splitSentencesIntoWords().entrySet()) {
-            List<String> value = entry.getValue();
-            if (value.size() > longestSentence) {
-                longestSentence = value.size();
-                numberOfWords = longestSentence;
-            }
-        }
-        return numberOfWords;
+    public List<List<String>> getListOfSortedWords() {
+        return listOfSortedWords;
     }
 
+    public int getLongestSentence() {
+        return longestSentence;
+    }
 }
