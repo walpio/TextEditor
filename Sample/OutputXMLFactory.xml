@@ -2,22 +2,22 @@
 <text>
     <sentence>
         <word>Some</word>
-        <word>words.</word>
+        <word>words</word>
     </sentence>
     <sentence>
         <word>Random</word>
-        <word>sentences.</word>
+        <word>sentences</word>
     </sentence>
     <sentence>
         <word>For</word>
-        <word>only.</word>
+        <word>only</word>
         <word>purposes</word>
         <word>testing</word>
     </sentence>
     <sentence>
         <word>Case</word>
         <word>sensitive</word>
-        <word>Test.</word>
+        <word>Test</word>
     </sentence>
     <sentence>
         <word>amount</word>
@@ -30,6 +30,26 @@
         <word>the</word>
         <word>This</word>
         <word>totally</word>
-        <word>words.</word>
+        <word>words</word>
+    </sentence>
+    <sentence>
+        <word>a</word>
+        <word>and</word>
+        <word>and</word>
+        <word>and</word>
+        <word>commas</word>
+        <word>Dr</word>
+        <word>few</word>
+        <word>jack</word>
+        <word>like</word>
+        <word>Mr</word>
+        <word>multiple</word>
+        <word>Now</word>
+        <word>problematic</word>
+        <word>spaces</word>
+        <word>spaces</word>
+        <word>things</word>
+        <word>typos</word>
+        <word>with</word>
     </sentence>
 </text>

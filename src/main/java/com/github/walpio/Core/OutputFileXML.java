@@ -15,12 +15,11 @@ public class OutputFileXML {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException {
         InputFile inputFile = new InputFile();
-//        writeToXML(inputFile);
+        writeToXML(inputFile);
         OutputFileXMLFactory.writeToXMLFactory(inputFile);
     }
 
     public static void writeToXML(InputFile inputFile) throws IOException {
-//        InputFile inputFile = new InputFile();
         Document doc = new Document();
         Element theRoot = new Element("text");
         doc.setRootElement(theRoot);

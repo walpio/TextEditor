@@ -67,7 +67,7 @@ public class InputFile {
         Map<String, List<String>> sortedWords = new LinkedHashMap<>();
 
         for (int i = 0; i < sentences.size(); i++) {
-            String sentence = sentences.get(i);
+            String sentence = formatWords(sentences.get(i));
             String key = String.format("Sentence %d", (i + 1));
             List<String> listOfWords = Arrays.asList(sentence.split("\\s+"));
             Collections.sort(listOfWords, String.CASE_INSENSITIVE_ORDER);
@@ -76,11 +76,17 @@ public class InputFile {
         return sortedWords;
     }
 
+    private String formatWords(String sentence) {
+        return sentence
+                .replaceAll("\\.", "")
+                .replaceAll(",", "");
+    }
+
     private List<List<String>> splitSentencesIntoListOfWords() throws IOException {
         List<List<String>> listOfSortedWords = new ArrayList<>();
 
         for (int i = 0; i < sentences.size(); i++) {
-            String sentence = sentences.get(i);
+            String sentence = formatWords(sentences.get(i));
             List<String> listOfWords = Arrays.asList(sentence.split("\\s+"));
             Collections.sort(listOfWords, String.CASE_INSENSITIVE_ORDER);
             listOfSortedWords.add(listOfWords);
