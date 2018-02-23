@@ -9,6 +9,7 @@ import java.util.*;
 public class InputFile {
 
     private String filePath = ".\\Sample\\Sample Text.txt";
+    private String rawInputText = readFile();
     private List<String> sentences = splitFileIntoSentences();
     private Map<String, List<String>> sortedWords = splitSentencesIntoWords();
     private List<List<String>> listOfSortedWords = splitSentencesIntoListOfWords();
@@ -41,7 +42,7 @@ public class InputFile {
         BreakIterator breakIterator = BreakIterator.getSentenceInstance();
         List<String> sentences = new ArrayList<>();
 
-        String inputText = readFile();
+        String inputText = formatSentences(rawInputText);
         breakIterator.setText(inputText);
         int start = breakIterator.first();
         for (int end = breakIterator.next();
@@ -51,6 +52,15 @@ public class InputFile {
             sentences.add(sentence);
         }
         return sentences;
+    }
+
+    private String formatSentences(String rawInputText) {
+        return rawInputText
+                .replaceAll("\\.", ". ")
+                .replaceAll(".+\n", " ")
+                .replaceAll("\\s+", " ")
+                .replaceAll("\\s+\\.", ".")
+                .replaceAll("\\s+,", ",");
     }
 
     private Map<String, List<String>> splitSentencesIntoWords() throws IOException {
@@ -93,6 +103,10 @@ public class InputFile {
         System.out.println("Metoda findTheLongestSentence wywołana: " + counter);
         counter++;
         return longestSentence;
+    }
+
+    public List<String> getSentences() {
+        return sentences;
     }
 
     public Map<String, List<String>> getSortedWords() {
