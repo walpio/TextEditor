@@ -8,19 +8,19 @@ import org.jdom2.output.support.AbstractXMLOutputProcessor;
 import org.jdom2.output.support.FormatStack;
 import org.jdom2.output.support.XMLOutputProcessor;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Writer;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
 
 public class OutputFileXML {
 
-    public static void main(String[] args) throws IOException {
-        writeToXML();
+    public static void main(String[] args) throws IOException, ParserConfigurationException {
+        InputFile inputFile = new InputFile();
+//        writeToXML(inputFile);
+        OutputFileXMLFactory.writeToXMLFactory(inputFile);
     }
 
-    public static void writeToXML() throws IOException {
-        InputFile inputFile = new InputFile();
+    public static void writeToXML(InputFile inputFile) throws IOException {
+//        InputFile inputFile = new InputFile();
         Document doc = new Document();
         Element theRoot = new Element("text");
         doc.setRootElement(theRoot);
