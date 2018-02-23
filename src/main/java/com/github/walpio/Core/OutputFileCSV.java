@@ -17,15 +17,15 @@ public class OutputFileCSV {
     }
 
     private static void writeToCSV() throws IOException {
-        BufferedWriter writer = Files.newBufferedWriter(Paths.get(".\\Sample\\OutputCSV.xml"));
+        BufferedWriter writer = Files.newBufferedWriter(Paths.get(".\\Sample\\OutputCSV.csv"));
         InputFile inputFile = new InputFile();
 
         String header;
         StringBuilder headerBuilder = new StringBuilder();
-        for (int i = 1; i < inputFile.getLongestSentence(); i++) {
+        for (int i = 1; i <= inputFile.getLongestSentence(); i++) {
             if (i == 1) {
                 headerBuilder.append(",").append(" ").append("Word").append(" ").append(i).append(",").append(" ");
-            } else if (i == (inputFile.getLongestSentence() - 1)) {
+            } else if (i == (inputFile.getLongestSentence())) {
                 headerBuilder.append("Word").append(" ").append(i);
             } else {
                 headerBuilder.append("Word").append(" ").append(i).append(",").append(" ");
@@ -41,10 +41,12 @@ public class OutputFileCSV {
             StringBuilder sentenceBodyBuilder = new StringBuilder();
 
             for (int i = 0; i < value.size(); i++) {
-                if (i == (value.size() - 1)) {
+                if (i == 0) {
+                    sentenceBodyBuilder.append(" ").append(value.get(i)).append(",").append(" ");
+                } else if (i == (value.size() - 1)) {
                     sentenceBodyBuilder.append(value.get(i));
                 } else {
-                    sentenceBodyBuilder.append(" ").append(value.get(i)).append(",").append(" ");
+                    sentenceBodyBuilder.append(value.get(i)).append(",").append(" ");
                 }
             }
 
