@@ -34,7 +34,7 @@ public class OutputFileCSV {
         header = headerBuilder.toString();
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(header).withQuote(null));
 
-        for (Map.Entry<String, List<String>> entry : inputFile.splitSentencesIntoWords().entrySet()) {
+        for (Map.Entry<String, List<String>> entry : inputFile.getSortedWords().entrySet()) {
             String key = entry.getKey();
             List<String> value = entry.getValue();
             String sentenceBody;
@@ -52,6 +52,7 @@ public class OutputFileCSV {
             csvPrinter.printRecord(key, sentenceBody);
         }
         csvPrinter.flush();
+        csvPrinter.close();
         System.out.println("CSV has been created");
     }
 }
